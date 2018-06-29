@@ -32,7 +32,10 @@ objects:
           deploymentconfig: ${APP_NAME}
       spec:
         containers:
-        - env:
+        - image: produban/monkey-ops:1.0.0.RELEASE
+          imagePullPolicy: IfNotPresent
+          name: ${APP_NAME}
+          env:
           - name: APP_NAME
             value: ${APP_NAME}
           - name: PROJECT_NAME
@@ -45,9 +48,6 @@ objects:
             value: ${MODE}                                             
           - name: TZ
             value: ${TZ}
-          image: produban/monkey-ops:1.0.0.RELEASE
-          imagePullPolicy: IfNotPresent
-          name: ${APP_NAME}
           ports:
           - containerPort: 8080
             protocol: TCP
